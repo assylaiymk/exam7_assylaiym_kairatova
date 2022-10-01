@@ -9,14 +9,14 @@
 {% block content %}
 <h1>Guest book</h1>
  <form action="{% url 'searchbar' %}" method="post">
-        {% csrf_token %}
+     {% csrf_token %}
         <input type="text" name="search" placeholder="Search by name">
         <input type="submit" value="Search">
  </form>
-    <div class="card" style="width: 38rem; height:12rem; border: solid black;">
     {% for book in books %}
+    <div class="card mb-3" style="width: 38rem; height:10rem; border: solid black; background: #FFFFF0;">
         <h2>{{ book.author }} ({{ book.email }})
-            <a href="{% url 'book_update' book.pk %}">{% bs_icon 'plus-square'%}</a>
+            <a href="{% url 'book_update' book.pk %}">{% bs_icon 'pencil-square'%}</a>
             <a href="{% url 'book_delete' book.pk %}">{% bs_icon 'trash'%}</a>
         </h2>
         <p>{{ book.text }}</p>

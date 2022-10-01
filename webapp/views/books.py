@@ -12,7 +12,7 @@ def add_view(request):
         print(form.errors)
         return render(request, 'book_create.html', context={'choices': StatusChoices.choices, 'form': form})
     article = Book.objects.create(**form.cleaned_data)
-    return redirect('book_detail', pk=article.pk)
+    return redirect('index')
 
 
 def detail_view(request, pk):
@@ -50,7 +50,7 @@ def update_view(request, pk):
                     'errors': errors
                 })
         book.save()
-        return redirect('book_detail', pk=book.pk)
+        return redirect('index')
     return render(
         request,
         'book_update.html',

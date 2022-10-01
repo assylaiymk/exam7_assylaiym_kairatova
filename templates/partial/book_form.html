@@ -1,5 +1,5 @@
 {% csrf_token %}
-
+{% load django_bootstrap5 %}
 <div class="form_row mb-3 mt-2">
     {% if errors.name %}
         <p class="error">{{ errors.name }}</p>
@@ -20,6 +20,9 @@
             <input id="author" name="author" type="text" value="{{ book.author }}">
         </div>
         <div class="form_row mb-2">
+            {% if errors.text %}
+                <p class="error">{{ errors.text }}</p>
+            {% endif %}
             <label for="text">Text: </label>
             <textarea name="text" id="text" cols="40" rows="10">{{ book.text }}</textarea>
         </div>

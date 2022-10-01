@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
-from webapp.models import Book
+from webapp.models import Book, StatusChoices
 
 
 def index_view(request):
-    books = Book.objects.exclude(is_deleted=True)
+    books = Book.objects.exclude(is_deleted=True).order_by('-created_at').filter(status='ACTIVE')
     context = {
         'books': books
     }
