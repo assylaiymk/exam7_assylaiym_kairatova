@@ -7,16 +7,20 @@
 {% endblock %}
 
 {% block content %}
-<h1>Books</h1>
+<h1>Guest book</h1>
+ <form action="{% url 'searchbar' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="Search by name">
+        <input type="submit" value="Search">
+ </form>
+<!--    <div class="card" style="width: 38rem; height:12rem; border: solid black;">-->
+<!--    {% for book in books %}-->
+        <h2>{{ book.author }} ({{ book.email }})</h2>
+        <p>{{ book.text }}</p>
+<!--    </div>-->
 
-{% for book in books %}
-    <h2>Name - {{ book.name }}</h2>
-    <p>Email - {{ book.email }}</p>
-    <p>Author - {{ book.author }}</p>
-    <p>Text - {{ book.text }}</p>
-    <p>Changed at - {{ book.changed_at }}</p>
-    <p><a href="{% url 'book_detail' book.pk %}">More</a> </p>
     <p><a href="{% url 'book_update' book.pk %}">Update</a> </p>
     <p><a href="{% url 'book_delete' book.pk %}">Delete</a> </p>
+
 {% endfor %}
 {% endblock %}

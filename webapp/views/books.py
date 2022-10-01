@@ -20,12 +20,22 @@ def detail_view(request, pk):
     return render(request, 'book.html', context={'book': book})
 
 
+def searchbar_view(request):
+    if request.method == 'POST':
+        search = request.POST['search']
+        books = Book.objects.filter(name__contains=search)
+        return render(request, 'searchbar.html', context={'search': search, 'books': books})
+    else:
+        return render(request, 'searchbar.html', context={})
+
+
 def update_view(request, pk):
     errors = {}
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
-        if request.POST.get('name'):
+        if request.POST.get('name', 'email'):
             errors['name']: "The field is required"
+            errors['email']: "The field is required"
         book.name = request.POST.get('name')
         book.email = request.POST.get('email')
         book.author = request.POST.get('author')
@@ -40,7 +50,7 @@ def update_view(request, pk):
                     'errors': errors
                 })
         book.save()
-        return redirect('article_detail', pk=book.pk)
+        return redirect('book_detail', pk=book.pk)
     return render(
         request,
         'book_update.html',

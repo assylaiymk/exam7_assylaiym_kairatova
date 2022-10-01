@@ -1,7 +1,13 @@
 {% csrf_token %}
+{% load django_bootstrap5 %}
+<!--{% bootstrap_form form %}-->
+<!--{% bootstrap_field form.name %}-->
+{% for field in form %}
+    <label for="">{{ field.label }}</label>
+    <p>{{ field }}</p>
+{% endfor %}
 
-{{ form.as_p }}
 
-<input type="submit" value="{{ button_text }}">
+{% bootstrap_button button_type="submit" content=button_text %}
 
 

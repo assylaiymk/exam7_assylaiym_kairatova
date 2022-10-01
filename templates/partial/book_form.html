@@ -1,24 +1,29 @@
 {% csrf_token %}
-<div class="form_row">
+
+<div class="form_row mb-3 mt-2">
     {% if errors.name %}
-    <p class="error">{{ errors.name }}</p>
+        <p class="error">{{ errors.name }}</p>
     {% endif %}
             <label for="name">Name: </label>
             <input id="name" name="name" type="text" value="{{ book.name }}">
         </div>
-        <div class="form_row">
+
+        <div class="form_row mb-3" >
+            {% if errors.email %}
+                <p class="error">{{ errors.email }}</p>
+            {% endif %}
             <label for="email">Email: </label>
             <input id="email" name="email" type="text" value="{{ book.email }}">
         </div>
-        <div class="form_row">
+        <div class="form_row mb-3" >
             <label for="author">Author: </label>
             <input id="author" name="author" type="text" value="{{ book.author }}">
         </div>
-        <div class="form_row">
+        <div class="form_row mb-2">
             <label for="text">Text: </label>
             <textarea name="text" id="text" cols="40" rows="10">{{ book.text }}</textarea>
         </div>
-            <div class="form_row">
+            <div class="form_row mb-2">
             <label for="status">Status: </label>
             <select name="status" id="status">
                 {% for choice in choices %}
@@ -30,6 +35,6 @@
                 {% endfor %}
             </select>
         </div>
-<div class="form_row">
+<div class="form_row mb-2">
     <input  type="submit" value="{{ button_text }}">
 </div>
