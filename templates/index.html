@@ -8,8 +8,9 @@
 
 {% block content %}
 <h1>Guest book</h1>
+ {% csrf_token %}
  <form action="{% url 'searchbar' %}" method="post">
-     {% csrf_token %}
+
         <input type="text" name="search" placeholder="Search by name">
         <input type="submit" value="Search">
  </form>
