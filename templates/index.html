@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load bootstrap_icons %}
 {% block menu %}
 <li>
     <a href="{% url 'book_add' %}">Add a book</a>
@@ -13,14 +13,13 @@
         <input type="text" name="search" placeholder="Search by name">
         <input type="submit" value="Search">
  </form>
-<!--    <div class="card" style="width: 38rem; height:12rem; border: solid black;">-->
-<!--    {% for book in books %}-->
-        <h2>{{ book.author }} ({{ book.email }})</h2>
+    <div class="card" style="width: 38rem; height:12rem; border: solid black;">
+    {% for book in books %}
+        <h2>{{ book.author }} ({{ book.email }})
+            <a href="{% url 'book_update' book.pk %}">{% bs_icon 'plus-square'%}</a>
+            <a href="{% url 'book_delete' book.pk %}">{% bs_icon 'trash'%}</a>
+        </h2>
         <p>{{ book.text }}</p>
-<!--    </div>-->
-
-    <p><a href="{% url 'book_update' book.pk %}">Update</a> </p>
-    <p><a href="{% url 'book_delete' book.pk %}">Delete</a> </p>
-
+    </div>
 {% endfor %}
 {% endblock %}
