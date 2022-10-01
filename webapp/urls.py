@@ -1,5 +1,5 @@
 from django.urls import path
-from webapp.views.books import add_view, detail_view, update_view, delete_view, confirm_delete
+from webapp.views.books import add_view, detail_view, update_view, delete_view, confirm_delete,searchbar_view
 from webapp.views.base import index_view
 
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
     path('books/<int:pk>/delete/', delete_view, name='book_delete'),
     path('books/<int:pk>/confirm-delete/', confirm_delete, name='confirm_delete'),
     path('books/', index_view),
-    path('books/<int:pk>', detail_view, name='book_detail')
+    path('books/<int:pk>', detail_view, name='book_detail'),
+    path('books/search/', searchbar_view, name='searchbar'),
 ]
