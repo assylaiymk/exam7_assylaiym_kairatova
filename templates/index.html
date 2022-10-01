@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block menu %}
+<li>
+    <a href="{% url 'book_add' %}">Add a book</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<h1>Books</h1>
+
+{% for book in books %}
+    <h2>Name - {{ book.name }}</h2>
+    <p>Email - {{ book.email }}</p>
+    <p>Author - {{ book.author }}</p>
+    <p>Text - {{ book.text }}</p>
+    <p>Changed at - {{ book.changed_at }}</p>
+    <p><a href="{% url 'book_detail' book.pk %}">More</a> </p>
+    <p><a href="{% url 'book_update' book.pk %}">Update</a> </p>
+    <p><a href="{% url 'book_delete' book.pk %}">Delete</a> </p>
+{% endfor %}
+{% endblock %}

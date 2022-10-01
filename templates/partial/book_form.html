@@ -1,0 +1,35 @@
+{% csrf_token %}
+<div class="form_row">
+    {% if errors.name %}
+    <p class="error">{{ errors.name }}</p>
+    {% endif %}
+            <label for="name">Name: </label>
+            <input id="name" name="name" type="text" value="{{ book.name }}">
+        </div>
+        <div class="form_row">
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="text" value="{{ book.email }}">
+        </div>
+        <div class="form_row">
+            <label for="author">Author: </label>
+            <input id="author" name="author" type="text" value="{{ book.author }}">
+        </div>
+        <div class="form_row">
+            <label for="text">Text: </label>
+            <textarea name="text" id="text" cols="40" rows="10">{{ book.text }}</textarea>
+        </div>
+            <div class="form_row">
+            <label for="status">Status: </label>
+            <select name="status" id="status">
+                {% for choice in choices %}
+                    {% if article.status == choice.0 %}
+                        <option value="{{ choice.0 }}" selected>{{ choice.1 }}</option>
+                     {% else %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+<div class="form_row">
+    <input  type="submit" value="{{ button_text }}">
+</div>

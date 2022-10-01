@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    Create a book
+{% endblock %}
+{% block content %}
+    <form action="{% url 'book_add' %}" method="POST">
+        <div class="form">
+        {% include 'partial/book_form2.html' with button_text='Create' %}
+    </div>
+    </form>
+{% endblock %}
